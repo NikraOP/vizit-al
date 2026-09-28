@@ -2036,6 +2036,21 @@ section[id] { scroll-margin-top: 24px; }
   .cta__photo img { object-position: 50% 8%; }
 }
 
+/* подвал: почта не налезает на реквизиты — на телефоне контакты и реквизиты друг под другом,
+   на планшете колонка контактов по ширине почты */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .site-footer__bottom { grid-template-columns: max-content minmax(0, 1fr) minmax(0, 1fr); }
+}
+@media (max-width: 767px) {
+  .site-footer__bottom { grid-template-columns: minmax(0, 1fr); }
+  .site-footer__contacts a { overflow-wrap: anywhere; }
+}
+
+/* фото «До» в кейсах Home Staging на планшете и телефоне — крупнее, по три в ряд */
+@media (max-width: 1199px) {
+  .hs-case__strip { --cols: 3; }
+}
+
 @media print {
   .site-header, .hero__actions, .cta .btn { display: none; }
   .approach__inner, .cta, .result-card--wide { background: none; color: var(--main); }
