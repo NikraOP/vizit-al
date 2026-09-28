@@ -2013,6 +2013,14 @@ section[id] { scroll-margin-top: 24px; }
   .lightbox__btn--next { right: calc(50% - 56px); }
 }
 
+/* планшет и ноутбук (768–1919): весь текст чуть крупнее; телефон и ≥1920 не меняются */
+@media (min-width: 1200px) and (max-width: 1919px) {
+  html { font-size: 103.125%; }              /* 16.5px вместо 15px */
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  html { font-size: 96.875%; }               /* 15.5px вместо 14px */
+}
+
 @media print {
   .site-header, .hero__actions, .cta .btn { display: none; }
   .approach__inner, .cta, .result-card--wide { background: none; color: var(--main); }
