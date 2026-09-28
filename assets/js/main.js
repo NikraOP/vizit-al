@@ -126,6 +126,57 @@
     contactModal.addEventListener('close', function () { document.body.style.overflow = ''; });
   }
 
+  /* ---------- просмотр фото кейсов ----------
+     Без JS ссылки просто открывают крупное фото. */
+  var lightbox = document.getElementById('lightbox');
+
+  if (lightbox && typeof lightbox.showModal === 'function') {
+    var lbImg = lightbox.querySelector('.lightbox__img');
+    var lbCaption = lightbox.querySelector('.lightbox__caption');
+    var lbGroup = [];
+    var lbIndex = 0;
+
+    var lbShow = function (i) {
+      lbIndex = (i + lbGroup.length) % lbGroup.length;
+      var link = lbGroup[lbIndex];
+      lbImg.src = link.getAttribute('href');
+      lbImg.alt = link.querySelector('img').alt;
+      lbCaption.textContent = link.getAttribute('data-caption') + ' · ' + (lbIndex + 1) + ' / ' + lbGroup.length;
+    };
+
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('[data-lightbox]');
+      if (!link) return;
+      e.preventDefault();
+      lbGroup = Array.prototype.slice.call(
+        document.querySelectorAll('[data-lightbox="' + link.getAttribute('data-lightbox') + '"]'));
+      lbShow(lbGroup.indexOf(link));
+      lightbox.showModal();
+      document.body.style.overflow = 'hidden';
+    });
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target.closest('[data-lightbox-prev]')) lbShow(lbIndex - 1);
+      else if (e.target.closest('[data-lightbox-next]')) lbShow(lbIndex + 1);
+      else if (e.target !== lbImg) lightbox.close();   // крестик или клик мимо фото
+    });
+    lightbox.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') lbShow(lbIndex - 1);
+      if (e.key === 'ArrowRight') lbShow(lbIndex + 1);
+    });
+
+    var touchX = null;   // листание свайпом
+    lightbox.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', function (e) {
+      if (touchX === null) return;
+      var dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 50) lbShow(lbIndex + (dx < 0 ? 1 : -1));
+      touchX = null;
+    });
+
+    lightbox.addEventListener('close', function () { document.body.style.overflow = ''; lbImg.src = 'data:,'; });
+  }
+
   /* ---------- год в подвале ---------- */
   var year = document.querySelector('[data-year]');
   if (year) year.textContent = String(new Date().getFullYear());
