@@ -2025,15 +2025,19 @@ section[id] { scroll-margin-top: 24px; }
   .exp--photo .exp-item__label { font-size: .8125rem; }
 }
 
-/* финальный блок главной на компьютерах и ноутбуках: высота как раньше (по тексту),
-   портрет стоит в общей колонке 1440px рядом с текстом, а не у края экрана,
-   и почти не обрезается — ширина колонки близка к пропорциям снимка */
+/* финальный блок главной: горизонтальный кадр за столом.
+   На компьютере — невысокий блок, фото в общей колонке 1440px справа от текста */
 @media (min-width: 1200px) {
   .cta {
-    grid-template-columns: minmax(0, 1fr) clamp(340px, 24vw, 420px);
+    grid-template-columns: minmax(0, 1fr) min(48vw, 700px);
     padding-right: max(var(--pad), calc((100vw - 1440px) / 2));
   }
-  .cta__photo img { object-position: 50% 8%; }
+  .cta__content { padding-top: clamp(48px, 4.4vw, 72px); padding-bottom: clamp(48px, 4.4vw, 72px); }
+  .cta__photo { min-height: 0; }
+}
+.cta__photo img { object-position: 50% 25%; }
+@media (max-width: 767px) {
+  .cta__photo img { height: auto; aspect-ratio: 1672 / 941; }
 }
 
 /* подвал: почта не налезает на реквизиты — на телефоне контакты и реквизиты друг под другом,
