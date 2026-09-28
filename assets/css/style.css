@@ -1866,7 +1866,7 @@ section[id] { scroll-margin-top: 24px; }
   letter-spacing: -.02em;
 }
 .hs-case__fact-label { font-size: .8125rem; color: var(--main-70); }
-.hs-case__result-text { margin-top: 10px; font-size: clamp(.875rem, .98vw, .9375rem); line-height: 1.55; }
+.hs-case__result-text { margin-top: 8px; font-size: clamp(.875rem, .98vw, .9375rem); line-height: 1.55; }
 
 .hs-case__gallery { display: grid; gap: clamp(18px, 2vw, 28px); }
 .hs-case__label { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; color: var(--main-60); }
@@ -2019,6 +2019,13 @@ section[id] { scroll-margin-top: 24px; }
 }
 @media (min-width: 768px) and (max-width: 1199px) {
   html { font-size: 96.875%; }               /* 15.5px вместо 14px */
+}
+
+/* финальный блок главной на компьютерах и ноутбуках: колонка с фото в пропорциях снимка,
+   чтобы портрет не превращался в узкую полосу на широких экранах */
+@media (min-width: 1200px) {
+  .cta { grid-template-columns: minmax(0, 1fr) clamp(380px, 30vw, 620px); }
+  .cta__photo { min-height: 0; aspect-ratio: 1066 / 1280; }
 }
 
 @media print {
