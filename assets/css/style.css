@@ -2021,11 +2021,15 @@ section[id] { scroll-margin-top: 24px; }
   html { font-size: 96.875%; }               /* 15.5px вместо 14px */
 }
 
-/* финальный блок главной на компьютерах и ноутбуках: колонка с фото в пропорциях снимка,
-   чтобы портрет не превращался в узкую полосу на широких экранах */
+/* финальный блок главной на компьютерах и ноутбуках: высота как раньше (по тексту),
+   портрет стоит в общей колонке 1440px рядом с текстом, а не у края экрана,
+   и почти не обрезается — ширина колонки близка к пропорциям снимка */
 @media (min-width: 1200px) {
-  .cta { grid-template-columns: minmax(0, 1fr) clamp(380px, 30vw, 620px); }
-  .cta__photo { min-height: 0; aspect-ratio: 1066 / 1280; }
+  .cta {
+    grid-template-columns: minmax(0, 1fr) clamp(340px, 24vw, 420px);
+    padding-right: max(var(--pad), calc((100vw - 1440px) / 2));
+  }
+  .cta__photo img { object-position: 50% 8%; }
 }
 
 @media print {
