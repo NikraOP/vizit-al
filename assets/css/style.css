@@ -1904,7 +1904,7 @@ section[id] { scroll-margin-top: 24px; }
 .hs-case__photo:hover img { transform: scale(1.04); }
 .hs-case__photo:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 /* широкие фото (детская): большое сверху на всю ширину, остальные под ним */
-.hs-case__grid--wide li:first-child { grid-row: auto; }
+.hs-case__grid--wide li:first-child { grid-column: 1 / -1; grid-row: auto; }
 .hs-case__grid--wide li:first-child .hs-case__photo { aspect-ratio: 16 / 9; }
 .hs-case__grid--wide li:not(:first-child) .hs-case__photo { aspect-ratio: 3 / 2; }
 
@@ -2149,6 +2149,9 @@ a:hover > .msg-icon { color: currentColor; }
 @media (max-width: 767px) {
   .reviews--2 { grid-template-columns: 1fr; }
 }
+
+/* широкое фото сверху, под ним вертикальные (коммерческое помещение на странице аренды) */
+.hs-case__grid--wide.hs-case__grid--portrait li:not(:first-child) .hs-case__photo { aspect-ratio: 3 / 4; }
 
 @media print {
   .site-header, .hero__actions, .cta .btn { display: none; }
