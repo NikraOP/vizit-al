@@ -2029,13 +2029,13 @@ section[id] { scroll-margin-top: 24px; }
    На компьютере — невысокий блок, фото в общей колонке 1440px справа от текста */
 @media (min-width: 1200px) {
   .cta {
-    grid-template-columns: minmax(0, 1fr) min(48vw, 700px);
-    padding-right: max(var(--pad), calc((100vw - 1440px) / 2));
+    /* фото начинается там же, где колонка контента, и тянется до правого края коричневого блока */
+    grid-template-columns: minmax(0, 1fr) calc(min(48vw, 700px) + max(var(--pad), calc((100vw - 1440px) / 2)));
   }
   .cta__content { padding-top: clamp(48px, 4.4vw, 72px); padding-bottom: clamp(48px, 4.4vw, 72px); }
   .cta__photo { min-height: 0; }
 }
-.cta__photo img { object-position: 50% 25%; }
+.cta__photo img { object-position: 50% 14%; }
 @media (max-width: 767px) {
   .cta__photo img { height: auto; aspect-ratio: 1672 / 941; }
 }
