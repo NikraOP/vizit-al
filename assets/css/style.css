@@ -2141,6 +2141,15 @@ a:hover > .msg-icon { color: currentColor; }
 .doc-pages__page { background: #fff; box-shadow: 0 1px 2px rgba(62, 39, 35, .08), 0 12px 32px -12px rgba(62, 39, 35, .18); }
 .doc-pages__page img { display: block; width: 100%; height: auto; }
 
+/* кейсы: два фото рядом одинакового размера (аренда, коммерческое помещение) */
+.hs-case__grid.hs-case__grid--pair li:first-child { grid-column: auto; grid-row: auto; }
+.hs-case__grid.hs-case__grid--pair li:first-child .hs-case__photo { aspect-ratio: 3 / 4; }
+/* отзывы: две карточки — в две колонки */
+.reviews--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 767px) {
+  .reviews--2 { grid-template-columns: 1fr; }
+}
+
 @media print {
   .site-header, .hero__actions, .cta .btn { display: none; }
   .approach__inner, .cta, .result-card--wide { background: none; color: var(--main); }
