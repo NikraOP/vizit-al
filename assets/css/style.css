@@ -2040,19 +2040,61 @@ section[id] { scroll-margin-top: 24px; }
   .cta__photo img { height: auto; aspect-ratio: 1672 / 941; }
 }
 
-/* подвал: почта не налезает на реквизиты — на телефоне контакты и реквизиты друг под другом,
-   на планшете колонка контактов по ширине почты */
-@media (min-width: 768px) and (max-width: 1199px) {
-  .site-footer__bottom { grid-template-columns: max-content minmax(0, 1fr) minmax(0, 1fr); }
-}
-@media (max-width: 767px) {
-  .site-footer__bottom { grid-template-columns: minmax(0, 1fr); }
-  .site-footer__contacts a { overflow-wrap: anywhere; }
-}
-
 /* фото «До» в кейсах Home Staging на планшете и телефоне — крупнее, по три в ряд */
 @media (max-width: 1199px) {
   .hs-case__strip { --cols: 3; }
+}
+
+/* ---------- подвал: три равные колонки с подписями, копирайт внизу ---------- */
+.site-footer__bottom { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.site-footer__col { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; min-width: 0; }
+.site-footer__label {
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.site-footer__address { max-width: 22em; padding-top: 2px; }
+.site-footer__messengers { display: flex; flex-wrap: wrap; gap: 8px; }
+.site-footer__messengers a,
+.contact-modal__messengers a { gap: 10px; }
+.site-footer__messengers a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 16px 8px 12px;
+  border: var(--line) solid var(--main-15);
+  font-size: .875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
+}
+.site-footer__messengers a:hover { border-color: var(--main); background: var(--main); color: var(--bg); }
+.msg-icon { flex: none; color: var(--accent); transition: color .2s var(--ease); }
+a:hover > .msg-icon { color: currentColor; }
+.site-footer__base {
+  margin-top: clamp(24px, 3vw, 36px);
+  padding-top: 20px;
+  border-top: var(--line) solid var(--main-15);
+  text-align: center;
+}
+.site-footer__base .site-footer__disclaimer { margin-top: 0; padding-top: 0; border-top: 0; }
+.site-footer__base .site-footer__copy {
+  grid-column: auto;
+  justify-self: auto;
+  max-width: none;
+  margin-top: 14px;
+  padding-top: 0;
+  border-top: 0;
+  text-align: center;
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .site-footer__bottom { grid-template-columns: max-content minmax(0, 1fr); }
+  .site-footer__col:last-child { grid-column: 1 / -1; }
+}
+@media (max-width: 767px) {
+  .site-footer__bottom { grid-template-columns: minmax(0, 1fr); gap: 24px; }
 }
 
 @media print {
