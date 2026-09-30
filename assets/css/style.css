@@ -2167,6 +2167,14 @@ a:hover > .msg-icon { color: currentColor; }
   .site-footer__top { grid-template-columns: max-content minmax(0, 1fr); }
 }
 
+/* компьютеры и ноутбуки: описания и перечни услуг — 17px
+   (1rem = базе 17px; на ноутбуках с масштабом Windows — 17 физических px) */
+@media (min-width: 1200px) {
+  .price-table th[scope="row"],
+  .service-card__text,
+  .hs-case__body { font-size: 1rem; }
+}
+
 @media print {
   .site-header, .hero__actions, .cta .btn { display: none; }
   .approach__inner, .cta, .result-card--wide { background: none; color: var(--main); }
