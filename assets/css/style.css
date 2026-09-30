@@ -2019,6 +2019,14 @@ section[id] { scroll-margin-top: 24px; }
 @media (min-width: 768px) and (max-width: 1199px) {
   html { font-size: 96.875%; }               /* 15.5px вместо 14px */
 }
+/* ноутбуки с масштабом Windows 125% / 150% (экран 1920 → в браузере 1536 / 1280px):
+   текст физически такого же размера, как на мониторе 1920 при 100%. Retina-экраны Mac (200%) не затрагиваются */
+@media (min-width: 1200px) and (max-width: 1919px) and (min-resolution: 1.2dppx) and (max-resolution: 1.4dppx) {
+  html { font-size: 75%; }                   /* 12px × 1.25 = 15 физических px */
+}
+@media (min-width: 1200px) and (max-width: 1919px) and (min-resolution: 1.45dppx) and (max-resolution: 1.7dppx) {
+  html { font-size: 62.5%; }                 /* 10px × 1.5 = 15 физических px */
+}
 /* блок «Опыт» на планшете: длинные слова («международное», «подготовлено») помещаются в колонку */
 @media (min-width: 768px) and (max-width: 1199px) {
   .exp--photo .exp-item__value--word { font-size: clamp(.9375rem, 1.55vw, 1.125rem); }
